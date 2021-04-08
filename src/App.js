@@ -1,25 +1,44 @@
+import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super();
+    //set it to default 
+    this.state = {
+      characters: ""
+    };
+    this.showList = this.showList.bind(this)
+  }
+
+  async componentDidMount() {
+    await  fetch('https://rickandmortyapi.com/api/character')
+    .then(response => response.json())
+    .then(users => this.setState({characters: users}))
+    
+  }
+
+   showList(){
+             return Object.values(this.state.characters.results).map(character =>  <h1>{character.name}</h1>)
+  }
+
+
+  render(){
+    return (
+      <div className="App">
+        {
+          this.state.characters !==""?
+                  // console.log(this.state.characters.amiibo)
+                  <div>
+                    {this.showList()}
+                    </div>
+                :
+              <div></div>
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
