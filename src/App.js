@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './logo.svg';
 import './App.css';
-
+import {CardList} from './components/card-list/card-list'
 class App extends React.Component {
   constructor(props) {
     super();
@@ -27,15 +27,15 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        {
-          this.state.characters !==""?
+          
+          
+          { this.state.characters !==""?
                   // console.log(this.state.characters.amiibo)
-                  <div>
-                    {this.showList()}
-                    </div>
+                 <CardList characters = {this.state.characters}/>
+                  // {Object.values(this.state.characters.results).map(character =>  <h1>{character.name}</h1>)}
                 :
               <div></div>
-        }
+            }
       </div>
     );
   }
