@@ -7,9 +7,11 @@ class App extends React.Component {
     super();
     //set it to default 
     this.state = {
-      characters: ""
+      characters: "",
+      searchField: ''
     };
     this.showList = this.showList.bind(this)
+    this. getFilteredCharacters = this.getFilteredCharacters.bind(this)
   }
 
   async componentDidMount() {
@@ -23,18 +25,21 @@ class App extends React.Component {
              return Object.values(this.state.characters.results).map(character =>  <h1>{character.name}</h1>)
   }
 
+  getFilteredCharacters(searchField){
+     return Object.values(this.state.characters.results).filter(character =>
+                    character.name.toLowerCase().includes(searchField.toLowerCase()))
+  }
 
   render(){
+    const searchField = this.state.searchField; 
     return (
       <div className="App">
+          <input type='search' placeholder = "Search Character" onChange={e =>{this.setState({searchField: e.target.value})}}/>
           
-          
-          { this.state.characters !==""?
-                  // console.log(this.state.characters.amiibo)
-                 <CardList characters = {this.state.characters}/>
-                  // {Object.values(this.state.characters.results).map(character =>  <h1>{character.name}</h1>)}
+          { this.state.characters != "" ?
+                 <CardList characters = {this.getFilteredCharacters(searchField)}/>
                 :
-              <div></div>
+              <div>Loading..</div>
             }
       </div>
     );
