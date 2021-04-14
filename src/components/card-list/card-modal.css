@@ -1,0 +1,50 @@
+.modal{
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    background-color: rgba(0,0,0,0.7);
+    display: flex; 
+    align-items: center;
+    justify-content:center;
+}
+
+.modal-content{
+    width: 500px; 
+    background-color: #fff; 
+}
+
+.modal-header .modal-footer{
+    padding: 10px;
+    background-color:#95dada;
+
+}
+
+.modal-title{
+    margin:0;
+    background-color:#95dada;
+
+}
+
+.modal-body{
+    padding: 10px;
+    
+
+}
+
+
+/* Same as card item, minus the hover effect */
+.card-modal-container {
+    display: flex;
+    flex-direction: column;
+    background-color:#95dada;
+    border-radius: 5px;
+    padding: 25px;
+    cursor: pointer;
+    -moz-osx-font-smoothing:grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+}
