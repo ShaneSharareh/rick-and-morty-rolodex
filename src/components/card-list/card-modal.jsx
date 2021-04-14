@@ -3,10 +3,21 @@ import './card-modal.css'
 export default class CardModal extends React.Component{
     constructor(props){
         super();
-
+        this.state = {selectedEpisode: ''}
     }
 
 
+    setEpisode = (e) =>{
+        this.setState({selectedEpisode: e.target.value})
+    }
+
+    redirectToEpisode = () =>{
+        const episodeLink = this.state.selectedEpisode.split(" ").join("-")
+        window.open(
+              `https://www.adultswim.com/videos/rick-and-morty/${episodeLink}`, "_blank");
+        
+    
+    }
 
     render(){
         console.log(this.props.data)
@@ -28,18 +39,25 @@ export default class CardModal extends React.Component{
                             <div className = "bio-container">
                                 <p>Species: {this.props.data.currentCharacer.species}</p>
                                 <p>Gender: {this.props.data.currentCharacer.gender}</p>
-                                <p>First Appearence:   </p>
+                                <p>First Appearence: {this.props.episodes[0].name} </p>
                             </div>
                             {this.props.episodes.length >0 ? 
                             <div className="episode-container">
                                 <label for="cars">Episodes:</label>
-                                <select id="cars" name="cars">
+                                <select value={this.state.selectedEpisode} 
+                                       onChange={this.setEpisode} >
+                                <option value=""> Select Episodes</option>
                                 {this.props.episodes.map(episode =>  
                                   
                                   <option value = {episode.name.split("").join("").toLowerCase()}>{episode.name}</option>
                                 )}
                             
                                  </select>
+                                 {this.state.selectedEpisode !== "" ?
+                                     <button onClick={this.redirectToEpisode}>STREAM {this.state.selectedEpisode.toUpperCase()}</button>
+                                    :
+                                    <div></div>
+                                 }
                             </div> :
                                  <div></div>
                             }

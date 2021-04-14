@@ -1,3 +1,13 @@
+body{
+  /* background-image: url("https://i.pinimg.com/originals/fa/70/cc/fa70cce738de59bba5008267e028968e.jpg");
+  background-position: center;
+  /* Center the image
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  /*background-size: cover;
+  position: relative;  */
+}
+
 .App {
   text-align: center;
 }
