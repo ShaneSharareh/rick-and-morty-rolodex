@@ -13,27 +13,22 @@ class App extends React.Component {
       searchField: '',
       currentCharacer: undefined,
       episodes: undefined
+
     };
 
    
   }
-  calculateEpisodes = () =>{
-      const numOfEpisodes = []
-      for (let i = 1; i<20; i++){
-        numOfEpisodes.push(i)
-      }
-      return numOfEpisodes.join(",")
-    }
+
 
    componentDidMount() {
 
-    fetch('https://rickandmortyapi.com/api/character')
+    fetch('https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,242,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30')
     .then(response => response.json())
     .then(users => this.setState({characters: users}))
 
     
 
-    fetch(`https://rickandmortyapi.com/api/episode/`)
+    fetch(`https://rickandmortyapi.com/api/episode/1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30`)
     .then(response => response.json())
     .then(users => this.setState({episodes: users}))
 
@@ -52,12 +47,12 @@ class App extends React.Component {
   getFilteredCharacters = (searchField) =>{
      console.log("porfavorsenor")
 
-     return Object.values(this.state.characters.results).filter(character =>
+     return Object.values(this.state.characters).filter(character =>
                     character.name.toLowerCase().includes(searchField.toLowerCase()))
   }
 
    getFilteredEpisodes = () =>{
-     return Object.values(this.state.episodes.results).filter(episode =>
+     return Object.values(this.state.episodes).filter(episode =>
                     this.state.currentCharacer.episode.includes(episode.url))
   }
 
