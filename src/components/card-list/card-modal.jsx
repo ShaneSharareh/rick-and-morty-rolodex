@@ -26,7 +26,7 @@ export default class CardModal extends React.Component{
                 <div className="modal-content">
                     
                     <div className="modal-header">
-                         <button onClick={()=>  this.props.closeModal(undefined)} className="button"type="button">Close</button>
+                         <button onClick={()=>  this.props.closeModal(undefined)} className="close-button"type="button">X</button>
 
                         <h1 className="modal-title">{this.props.data.currentCharacer.name}</h1>
 
@@ -44,7 +44,7 @@ export default class CardModal extends React.Component{
                             {this.props.episodes.length >0 ? 
                             <div className="episode-container">
                                 <label for="cars">Episodes:</label>
-                                <select value={this.state.selectedEpisode} 
+                                <select className = "dropdown" value={this.state.selectedEpisode} 
                                        onChange={this.setEpisode} >
                                 <option value=""> Select Episodes</option>
                                 {this.props.episodes.map(episode =>  
@@ -54,7 +54,9 @@ export default class CardModal extends React.Component{
                             
                                  </select>
                                  {this.state.selectedEpisode !== "" ?
-                                     <button onClick={this.redirectToEpisode}>STREAM {this.state.selectedEpisode.toUpperCase()}</button>
+                                    <div className="streaming-button-container">
+                                     <button className="streaming-button" onClick={this.redirectToEpisode}>STREAM {this.state.selectedEpisode.toUpperCase()}</button>
+                                     </div>
                                     :
                                     <div></div>
                                  }

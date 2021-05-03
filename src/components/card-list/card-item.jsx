@@ -6,3 +6,7 @@ export const Card = (props) => (
         <h1>{props.character.name}</h1>
     </div>
 )
+
+
+//Has single Cycle?
+
